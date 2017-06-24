@@ -17,22 +17,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //ImageView IV00 =  (ImageView)findViewById(R.id.imageView00);
-        //IV00.setOnClickListener(this);
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int height = displayMetrics.heightPixels;
-        int width = displayMetrics.widthPixels;
-        //ImageView[] imageViews = new ImageView[9];
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(StartActivity.EXTRA_MESSAGE);
         for(int i=0;i<9;i++) {
             int id = getResources().getIdentifier("imageView" + i, "id", getPackageName());
             ImageView IV = (ImageView) findViewById(id);
-            //ImageView IV = new ImageView(this);
-            //IV.setId(i);
             IV.setImageResource(R.drawable.plain);
             IV.setOnClickListener(this);
-            //IV.getLayoutParams().height=height/3;
-            //IV.getLayoutParams().width=width/3;
         }
     }
 
