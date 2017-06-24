@@ -1,6 +1,7 @@
 package com.example.sup33.tictactoe;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Model aModel = new Model();
+    Boolean win = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,20 +60,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             IV.setImageResource(R.drawable.round);
             aModel.aTicTacToe.setBoard((int)id/3,id%3,2);
         }
+        CharSequence text=null;
         if (aModel.isWin(new PlayerMove(0,0,1))){
-            Context context = getApplicationContext();
-            CharSequence text = "Player with \"X\" won!";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+            text = "Player with \"X\" won!";
+            win = true;
 
         }
         if (aModel.isWin(new PlayerMove(0,0,2))){
+             text = "Player with \"O\" won!";
+            win = true;
+
+        }
+        if(aModel.isDraw()){
+            text = "Match is draw !";
+            win = true;
+        }
+        if(win){
+
             Context context = getApplicationContext();
-            CharSequence text = "Player with \"O\" won!";
-            int duration = Toast.LENGTH_SHORT;
+            int duration = Toast.LENGTH_LONG;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
         }
 
 
