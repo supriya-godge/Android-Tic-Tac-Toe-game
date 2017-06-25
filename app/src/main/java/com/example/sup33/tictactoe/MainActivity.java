@@ -69,14 +69,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             IV.setImageResource(R.drawable.cross);
             aModel.aTicTacToe.setBoard((int) id / 3, id % 3, 1);
             PlayerMove aPlayerMove = new PlayerMove((int) id / 3, id % 3, 1);
-            if (aModel.isWin(new PlayerMove(0,0,1))){
-                win = true;
-            }else {
+            if ( (! aModel.isWin(new PlayerMove(0,0,1))) && aModel.aTicTacToe.isAnyThigFree()){
                 aServerPlayer.lastMove(aPlayerMove);
                 aPlayerMove = aServerPlayer.move();
                 aModel.aTicTacToe.setBoard(aPlayerMove.getRow(),aPlayerMove.getColumn(),aPlayerMove.getId());
                 int index = 3 * aPlayerMove.getRow() + aPlayerMove.getColumn();
                 aImageView[index].setImageResource(R.drawable.round);
+                aImageView[index].setClickable(false);
                 aServerPlayer.lastMove(aPlayerMove);
             }
         }
