@@ -3,4 +3,5 @@
     <string name="Number_player">Number of Players</string>
     <string name="one_player">One Player</string>
     <string name="Two_player">Two Player</string>
+    <string name="sound">Sound</string>
 </resources>

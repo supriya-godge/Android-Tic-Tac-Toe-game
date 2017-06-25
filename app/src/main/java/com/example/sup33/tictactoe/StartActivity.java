@@ -19,10 +19,27 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         /*MediaPlayer mMediaPlayer = new MediaPlayer();
-        mMediaPlayer = MediaPlayer.create(this, );
+        mMediaPlayer = MediaPlayer.create(this,R.raw.tune2 );
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mMediaPlayer.setLooping(true);
         mMediaPlayer.start();*/
+
+        Button two = (Button)this.findViewById(R.id.button3);
+        final MediaPlayer mp2 = MediaPlayer.create(this, R.raw.tune2);
+        two.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v) {
+
+                // If the music is playing
+                if(mp2.isPlaying())
+                    // Pause the music player
+                    mp2.pause();
+                    // If it's not playing
+                else
+                    // Resume the music player
+                    mp2.start();
+            }
+        });
     }
 
 
